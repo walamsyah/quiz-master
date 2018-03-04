@@ -1,0 +1,19 @@
+= render partial: "shared/form_errors", locals: { data: category }
+= form_for [:dashboard, category] do |f|
+  .mb-3
+    = f.label :name
+    = f.text_field :name, class: "form-control", required: true, placeholder: "category name"
+
+  .mb-3
+    = f.label :description
+    = f.cktext_area :description
+
+  .mb-3
+    label
+      = f.check_box :published
+      | &nbsp; Set to published?
+
+  hr.mb-4
+
+  .mb-3
+    = f.submit class: "btn btn-primary"

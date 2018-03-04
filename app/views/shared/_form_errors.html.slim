@@ -1,0 +1,8 @@
+- if data.errors.any?
+  .alert.alert-danger.alert-dismissible.fade.show role="alert" 
+    strong = "You've got #{pluralize(data.errors.count, "error")}"
+    ul.error_list
+      - data.errors.full_messages.each do |message|
+        li = message
+    button.close aria-label="Close" data-dismiss="alert" type="button" 
+      span aria-hidden="true" &times;

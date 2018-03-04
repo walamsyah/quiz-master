@@ -1,0 +1,28 @@
+.d-flex.justify-content-between.flex-wrap.flex-md-nowrap.align-items-center.pb-2.mb-3.border-bottom
+  h1.h2 Quiz Categories
+  .btn-toolbar.mb-2.mb-md-0
+    .btn-group.mr-2
+      = link_to new_dashboard_category_path, class: "btn btn-sm btn-outline-secondary"
+        | Create
+
+- if @categories.present?
+  table.table.table-striped
+    thead.thead-dark
+      tr
+        th scope="col" Name
+        th scope="col" Published
+        th scope="col"
+        th scope="col"
+    tbody
+      - @categories.each do |category|
+        tr
+          td = category.name
+          td = category.published
+          td
+            = link_to "Edit", edit_dashboard_category_path(category), class: "btn btn-warning btn-sm", role: "button"
+          td
+            = link_to "Delete", dashboard_category_path(category), method: :delete, data: { confirm: 'Are you sure want to delete?' }, class: "btn btn-danger btn-sm", role: "button"
+
+
+
+

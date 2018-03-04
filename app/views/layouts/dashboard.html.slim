@@ -1,0 +1,44 @@
+doctype html
+html
+  head
+    meta charset="utf-8"
+    meta http-equiv="X-UA-Compatible" content="IE=edge"
+    meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    title QuizMaster Dashboard
+    = csrf_meta_tags
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = stylesheet_link_tag    'dashboard', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'dashboard', 'data-turbolinks-track': 'reload'
+  body
+    nav.navbar.navbar-dark.sticky-top.bg-dark.flex-md-nowrap.p-0
+      a.navbar-brand.col-sm-3.col-md-2.mr-0 href="/dashboard" Quiz Master Dashboard
+    .container-fluid
+      .row
+        nav.col-md-2.d-none.d-md-block.bg-light.sidebar
+          .sidebar-sticky
+            ul.nav.flex-column
+              li.nav-item
+                = link_to dashboard_path, class: "nav-link" do
+                  span data-feather="home" 
+                  | Dashboard
+              li.nav-item
+                = link_to dashboard_categories_path, class: "nav-link" do
+                  span data-feather="file"
+                  | Categories
+              li.nav-item
+                = link_to dashboard_questions_path, class: "nav-link" do
+                  span data-feather="layers"
+                  | Questions
+        main.col-md-9.ml-sm-auto.col-lg-10.pt-3.px-4 role="main" 
+          - flash.each do |name, msg|
+            div class="alert alert-#{ name == 'notice' ? "success" : "danger" } alert-dismissable fade show" role="alert"
+              = msg
+              button.close aria-label="Close" data-dismiss="alert" type="button" 
+                span aria-hidden="true" &times;
+
+          = yield
+
+    script src="https://unpkg.com/feather-icons/dist/feather.min.js" 
+    javascript:
+      feather.replace()

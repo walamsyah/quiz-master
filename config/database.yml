@@ -1,0 +1,22 @@
+default: &default
+  adapter: postgresql
+  prepared_statements: false
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  connect_timeout: 2
+
+development: &development
+  <<: *default
+  database: quiz_master_development
+
+test: &test
+  <<: *default
+  database: quiz_master_test
+
+production: &production
+  <<: *default
+  host: <%= ENV['DATABASE_HOST'] %>
+  database: <%= ENV['DATABASE_NAME'] %>
+  username: <%= ENV['DATABASE_USERNAME'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>

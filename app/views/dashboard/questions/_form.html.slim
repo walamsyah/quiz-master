@@ -1,0 +1,27 @@
+= render partial: "shared/form_errors", locals: { data: question }
+= form_for [:dashboard, question] do |f|
+  .mb-3
+    = f.label :category
+    = f.collection_select(:category_id, Category.all.published.by_name, :id, :name, { prompt: "-- Select Category --" }, { class: "form-control", required: true })
+
+  .mb-3
+    = f.label :content
+    = f.cktext_area :content, required: true
+
+  .mb-3
+    = f.label :answer
+    = f.text_field :answer, class: "form-control", required: true
+
+  .mb-3
+    = f.label :position
+    = f.text_field :position, class: "form-control", required: true, type: "number", min: 1, max: 100, placeholder: "only number"
+
+  .mb-3
+    label
+      = f.check_box :published
+      | &nbsp; Set to published?
+
+  hr.mb-4
+
+  .mb-3
+    = f.submit class: "btn btn-primary"

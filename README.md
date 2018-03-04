@@ -1,24 +1,29 @@
-# README
+# Quiz Master
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is awesome Rails application for playing quizes.
+You can categorizing your quiz to make easy manage. Every quiz will have question and answer with custom ordering position.
+Sound cool uh! Lets play!
 
-Things you may want to cover:
+## Requirements:
 
-* Ruby version
+* Ruby 2.3.x
 
-* System dependencies
+* Rails 5.1.x
 
-* Configuration
+* PostgreSQL
 
-* Database creation
+## How To Run:
 
-* Database initialization
+* `bundle install`
 
-* How to run the test suite
+* `rails db:setup`
 
-* Services (job queues, cache servers, search engines, etc.)
+* `rails s`
 
-* Deployment instructions
+* to run all test `rspec spec`
 
-* ...
+* open browser and go to http://localhost:3000
+
+* http://localhost:3000/dashboard for manage quiz
+
+

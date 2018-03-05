@@ -3,11 +3,17 @@
   .mb-3
     = f.label :name
     = f.text_field :name, class: "form-control", required: true, placeholder: "category name"
-
   .mb-3
     = f.label :description
     = f.cktext_area :description
-
+  - if category.image?
+    .mb-3
+      = image_tag(category.image_url(:small))
+  .mb-3
+    = f.label :image, "Image (640x360px)"
+    = f.file_field :image, class: "form-control-file", aria: { describedby: "fileHelp" }
+    small#fileHelp.form-text.text-muted
+    = f.hidden_field :image_cache
   .mb-3
     label
       = f.check_box :published

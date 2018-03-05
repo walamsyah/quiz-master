@@ -10,6 +10,7 @@ RSpec.describe "dashboard/categories/_form.html.slim", type: :view do
       expect(rendered).to have_selector "form#new_category"
       expect(rendered).to have_selector "input#category_name[required=required]"
       expect(rendered).to have_selector "textarea#category_description"
+      expect(rendered).to have_selector "input#category_image[type=file]"
       expect(rendered).to have_selector "input#category_published[type=checkbox]"
       expect(rendered).to have_selector "input[type=submit][value='Create Category']"
     end
@@ -25,6 +26,7 @@ RSpec.describe "dashboard/categories/_form.html.slim", type: :view do
       expect(rendered).to have_selector "input[type=submit][value='Update Category']"
       expect(rendered).to have_selector "input#category_name[required=required]"
       expect(rendered).to have_selector "textarea#category_description"
+      expect(rendered).to have_selector "input#category_image[type=file]"
       expect(rendered).to have_selector "input#category_published[type=checkbox]"
     end
   end

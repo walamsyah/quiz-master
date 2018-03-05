@@ -19,6 +19,8 @@ gem 'humanize'
 gem 'bootstrap'
 gem 'jquery-rails'
 gem 'ckeditor'
+gem 'carrierwave'
+gem 'mini_magick'
 
 group :development, :test do
   gem 'capybara', '~> 2.13'

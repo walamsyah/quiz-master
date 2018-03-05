@@ -10,6 +10,7 @@
     thead.thead-dark
       tr
         th scope="col" Name
+        th scope="col" Image
         th scope="col" Published
         th scope="col"
         th scope="col"
@@ -17,6 +18,7 @@
       - @categories.each do |category|
         tr
           td = category.name
+          td = image_tag(category.image_url(:small))
           td = category.published
           td
             = link_to "Edit", edit_dashboard_category_path(category), class: "btn btn-warning btn-sm", role: "button"

@@ -24,7 +24,8 @@ RSpec.describe Dashboard::CategoriesController, type: :controller do
 
   describe "POST #create" do
     it "create a question when params valid" do
-      post :create, params: { category: { name: "Category 1", description: "Description Test", published: "true" } }
+      category_attributes = attributes_for :category
+      post :create, params: { category: category_attributes }
 
       expect(assigns(:category)).to be_persisted
       expect(response).to have_http_status(:redirect)

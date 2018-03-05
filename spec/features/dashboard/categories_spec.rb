@@ -21,6 +21,7 @@ RSpec.feature "Manage Dashboard Categories", :type => :feature do
 
       fill_in "category_name", with: "All About Jakarta"
       fill_in "category_description", with: "Interesting things about Jakarta will be fun"
+      find("#category_image", visible: false).set "#{Rails.root}/spec/fixtures/image.jpg"
       check "category_published"
       click_button "Create Category"
       

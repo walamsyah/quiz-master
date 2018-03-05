@@ -10,6 +10,7 @@ RSpec.describe Category, type: :model do
 
   it "has validation" do
     is_expected.to validate_presence_of :name
+    is_expected.to validate_presence_of :image
   end
 
   it "has associations" do

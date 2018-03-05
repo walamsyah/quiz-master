@@ -42,6 +42,6 @@ class Dashboard::CategoriesController < DashboardController
   end
 
   def category_params
-    params.require(:category).permit(:name, :description, :published)
+    params.require(:category).permit(:name, :description, :published, :image, :remove_image)
   end
 end

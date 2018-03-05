@@ -4,6 +4,7 @@ This is awesome Rails application for playing quizes.
 You can categorizing your quiz to make easy manage. Every quiz will have question and answer with custom ordering position.
 Sound cool uh! Lets play!
 
+
 ## Requirements:
 
 * Ruby 2.3.x
@@ -12,11 +13,14 @@ Sound cool uh! Lets play!
 
 * PostgreSQL
 
+* Imagemagick
+
+
 ## How To Run:
 
 * `bundle install`
 
-* `rails db:setup`
+* `rails db:create db:migrate db:seed`
 
 * `rails s`
 

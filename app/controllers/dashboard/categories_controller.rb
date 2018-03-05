@@ -2,7 +2,7 @@ class Dashboard::CategoriesController < DashboardController
   before_action :get_category, only: [:edit, :update, :destroy]
 
   def index
-    @categories = Category.order(id: :desc)
+    @categories = Category.latest
   end
 
   def new

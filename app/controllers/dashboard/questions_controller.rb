@@ -2,7 +2,12 @@ class Dashboard::QuestionsController < DashboardController
   before_action :get_question, only: [:edit, :update, :destroy]
 
   def index
-    @questions = Question.order(id: :desc)
+    if params[:category_id].present?
+      category = Category.find(params[:category_id])
+      @questions = category.questions.by_position
+    else
+      @questions = Question.order(updated_at: :desc)
+    end
   end
 
   def new

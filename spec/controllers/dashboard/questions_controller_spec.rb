@@ -6,11 +6,27 @@ RSpec.describe Dashboard::QuestionsController, type: :controller do
   let!(:question) { create :question, category: category }
 
   describe "GET #index" do
-    it "returns http success" do
-      get :index
-      expect(response).to have_http_status(:success)
-      expect(assigns(:questions)).to be_present
-      expect(assigns(:questions)).to be_include question
+    let!(:category2) { create :category }
+    let!(:question2) { create :question, category: category2 }
+    
+    context "params[:category_id] not present" do
+      it "not filter questions by category" do
+        get :index
+        expect(response).to have_http_status(:success)
+        expect(assigns(:questions).count).to eq 2
+        expect(assigns(:questions)).to be_include question
+        expect(assigns(:questions)).to be_include question2
+      end
+    end
+
+    context "params[:category_id] present" do
+      it "filter questions by category" do
+        get :index, params: { category_id: category.id }
+        expect(response).to have_http_status(:success)
+        expect(assigns(:questions).count).to eq 1
+        expect(assigns(:questions)).to be_include question
+        expect(assigns(:questions)).not_to be_include question2
+      end
     end
   end
 

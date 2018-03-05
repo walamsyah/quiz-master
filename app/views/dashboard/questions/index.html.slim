@@ -1,9 +1,13 @@
 .d-flex.justify-content-between.flex-wrap.flex-md-nowrap.align-items-center.pb-2.mb-3.border-bottom
   h1.h2 Quiz Questions
   .btn-toolbar.mb-2.mb-md-0
-    .btn-group.mr-2
-      = link_to new_dashboard_question_path, class: "btn btn-sm btn-outline-secondary"
-        | Create
+    .mr-2
+      button.btn.btn-sm.btn-outline-secondary.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" type="button" Category
+      .dropdown-menu.dropdown-menu-sm
+        - Category.by_name.each do |category|
+          = link_to category.name, dashboard_questions_path(category_id: category.id), class: "dropdown-item dropdown-item-sm"
+    = link_to new_dashboard_question_path, class: "btn btn-sm btn-outline-secondary"
+      | Create
 
 - if @questions.present?
   table.table.table-striped

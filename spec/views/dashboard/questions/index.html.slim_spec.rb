@@ -8,6 +8,7 @@ RSpec.describe "dashboard/questions/index.html.slim", type: :view do
     render
 
     expect(rendered).to have_content "Quiz Questions"
+    expect(rendered).to have_selector "button[data-toggle='dropdown']", text: "Category"
     expect(rendered).to have_selector "a.btn.btn-sm.btn-outline-secondary[href='#{new_dashboard_question_path}']", text: "Create"
 
     expect(rendered).to have_selector "table.table.table-striped"
@@ -25,12 +26,14 @@ RSpec.describe "dashboard/questions/index.html.slim", type: :view do
     expect(rendered).to have_selector "td a.btn.btn-danger.btn-sm[href='#{dashboard_question_path(question)}']", text: "Delete"
   end
   
-  it "will not render table list when @questions not present" do
+  it "not render table list when @questions not present" do
     assign :questions, []
     render
 
     expect(rendered).to have_content "Quiz Questions"
     expect(rendered).to have_selector "a.btn.btn-sm.btn-outline-secondary[href='#{new_dashboard_question_path}']", text: "Create"
+    expect(rendered).to have_selector "button[data-toggle='dropdown']", text: "Category"
+
     expect(rendered).not_to have_selector "table.table.table-striped"
     expect(rendered).not_to have_selector "th[scope='col']", text: "Category"
     expect(rendered).not_to have_selector "th[scope='col']", text: "Content"

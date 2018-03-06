@@ -55,4 +55,21 @@ RSpec.describe Category, type: :model do
       expect(categories.last).to eq cat1
     end
   end
+
+  describe ".to_param" do
+    it "will show slug url" do
+      category = create :category
+      expect(category.to_param).to eq "#{category.id}-#{category.name.parameterize}"
+    end
+  end
+
+  describe ".total_questions" do
+    it "will count how many published questions" do
+      category = create :category
+      question1 = create :question, category: category, published: false
+      question2 = create :question, category: category, published: true
+
+      expect(category.total_questions).to eq 1
+    end
+  end
 end

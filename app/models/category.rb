@@ -8,4 +8,12 @@ class Category < ApplicationRecord
   scope :latest, -> { order(id: :desc) }
 
   mount_uploader :image, CategoryImageUploader
+
+  def to_param
+    "#{id}-#{name.parameterize}"
+  end
+
+  def total_questions
+    questions.published.count
+  end
 end

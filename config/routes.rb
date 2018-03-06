@@ -8,5 +8,7 @@ Rails.application.routes.draw do
 
   get 'dashboard', to: 'dashboard#index'
 
+  resources :quizzes, only: :show
+
   root to: 'home#index'
 end

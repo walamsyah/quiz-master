@@ -3,16 +3,18 @@
   p.lead.my-3 You can play a variety of educational and entertaining quizzes just here
 
 - if @categories.present?
-  h3.font-italic.border-bottom Latest Quiz
+  h3.font-italic.border-bottom Latest Quizzes
 
   .row.py-3
     - @categories.each do |category|
       .col-md-4
         .card.mb-4.box-shadow
-          = image_tag(category.image_url(:medium), class: "card-img-top")
+          = link_to quiz_path(category)
+            = image_tag(category.image_url(:medium), class: "card-img-top")
           .card-body
             p.card-text = category.name
             .d-flex.justify-content-between.align-items-center
               .btn-group
-                button.btn.btn-sm.btn-outline-secondary type="button"  Play Now
-              small.text-muted = "#{category.questions.published.count} questions"
+                = link_to quiz_path(category)
+                  button.btn.btn-sm.btn-outline-secondary type="button" Play Now
+              small.text-muted = "#{category.total_questions} questions"

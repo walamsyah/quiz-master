@@ -1,0 +1,10 @@
+.quiz-show__container
+  h1.display-4.text-center = @category.name
+p
+p.text-center
+  = image_tag(@category.image_url(:big), class: "img-fluid")
+p
+.quiz-show__container.bg-light.rounded
+  == @category.description
+  p.text-center
+    button.btn.btn-success type="button" LET'S PLAY NOW

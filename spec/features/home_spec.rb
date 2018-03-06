@@ -9,8 +9,9 @@ RSpec.feature "Root Path", :type => :feature do
 
   context "Latest Quiz" do
     it "category index page" do
-      expect(page).to have_css "h3.font-italic.border-bottom", text: "Latest Quiz"
-      expect(page).to have_css "p.card-text", text: category.name
+      expect(page).to have_content "Latest Quizzes"
+      expect(page).to have_content category.name
+      expect(page).to have_content "#{category.total_questions} questions"
     end
   end
 end

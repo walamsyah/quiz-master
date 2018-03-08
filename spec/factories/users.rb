@@ -1,7 +1,10 @@
 FactoryBot.define do
   factory :user do
     name Faker::Name.name
-    email Faker::Internet.email
+    sequence :email do |i|
+      username = Faker::Internet.user_name(nil, %w(_))+"-#{i}-" + SecureRandom.hex(3)
+      username + '@gmail.com'
+    end
     password "password"
   end
 end

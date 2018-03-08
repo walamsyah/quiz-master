@@ -1,0 +1,32 @@
+.d-flex.justify-content-between.flex-wrap.flex-md-nowrap.align-items-center.pb-2.mb-3.border-bottom
+  h1.h2 Users
+  .btn-toolbar.mb-2.mb-md-0
+    .mr-2
+      button.btn.btn-sm.btn-outline-secondary.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" type="button" Role
+      .dropdown-menu.dropdown-menu-sm
+        - ['Admin', 'Member'].each do |role|
+          = link_to role, dashboard_users_path(role: role.downcase), class: "dropdown-item dropdown-item-sm"
+
+- if @users.present?
+  table.table.table-striped
+    thead.thead-dark
+      tr
+        th scope="col" Name
+        th scope="col" Email
+        th scope="col" Role
+        th scope="col"
+        th scope="col"
+    tbody
+      - @users.each do |user|
+        tr
+          td = user.name
+          td = user.email
+          td = user.role
+          td
+            = link_to "Edit", edit_dashboard_user_path(user), class: "btn btn-warning btn-sm edit-user-#{user.id}", role: "button"
+          td
+            = link_to "Delete", dashboard_user_path(user), method: :delete, data: { confirm: 'Are you sure want to delete?' }, class: "btn btn-danger btn-sm delete delete-user-#{user.id}", role: "button"
+
+
+
+

@@ -1,0 +1,18 @@
+= render partial: "shared/form_errors", locals: { data: user }
+= form_for [:dashboard, user] do |f|
+  .mb-3
+    = f.label :name
+    = f.text_field :name, class: "form-control", disabled: true
+
+  .mb-3
+    = f.label :email
+    = f.text_field :email, class: "form-control", disabled: true
+
+  .mb-3
+    = f.label :role
+    = f.select(:role, User.roles.keys.map { |role| [role.titleize,role] }, {}, { class: "form-control" })
+
+  hr.mb-4
+
+  .mb-3
+    = f.submit class: "btn btn-primary"

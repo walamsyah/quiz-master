@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   namespace :dashboard  do
     resources :categories, except: :show
     resources :questions, except: :show
+    resources :users, except: [:show, :new, :create]
   end
 
   get 'dashboard', to: 'dashboard#index'
@@ -13,7 +14,7 @@ Rails.application.routes.draw do
       post :start, on: :collection
     end
   end
-  
+
   devise_for :users, controllers: { sessions: 'users/sessions' }
 
   root to: 'home#index'

@@ -1,6 +1,7 @@
 class QuestionsController < ApplicationController
   layout false
 
+  before_action :authenticate_user!
   before_action :get_category_and_questions, only: [:start, :create]
 
   def start
@@ -30,6 +31,7 @@ class QuestionsController < ApplicationController
     question = @category.questions.find(params[:question_id])
 
     question_answer = QuestionAnswer.new(question_answer_params)
+    question_answer.user_id = current_user.id
     question_answer.category_id = params[:quiz_id]
     question_answer.is_correct  = question.check_correct_answer?(params[:answer]).to_s
     question_answer.save

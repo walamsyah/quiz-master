@@ -12,13 +12,33 @@ html
     .container
       header.blog-header.py-3
         .row.flex-nowrap.justify-content-between.align-items-center
-          .col-4.pt-1
-          .col-4.text-center
+          .col-8
             = link_to "Quiz Master", root_path, class: "blog-header-logo text-dark"
           .col-4.d-flex.justify-content-end.align-items-center
+
+            - if user_signed_in?
+              .dropdown.show
+                a#dropdownMenuLink.btn.btn-sm.btn-outline-secondary.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#"
+                  = current_user.name
+                .dropdown-menu aria-labelledby="dropdownMenuLink" 
+                  = link_to "Profile", edit_user_registration_path, class: "dropdown-item"
+                  - if current_user.role == 'admin'
+                    .dropdown-divider
+                    = link_to "Manage Quiz", dashboard_path, class: "dropdown-item"
+                  .dropdown-divider
+                  = link_to "Sign Out", destroy_user_session_path, method: :delete, class: "dropdown-item"
+            - else
+              = link_to "Sign In", new_user_session_path, class: "btn btn-sm btn-outline-secondary"
+
       .nav-scroller.py-1.mb-2
         nav.nav.d-flex
           = link_to "Home", root_path, class: "p-2 text-muted"
+
+      - flash.each do |name, msg|
+        div class="alert alert-#{ name == 'notice' ? "success" : "danger" } alert-dismissable fade show" role="alert"
+          = msg
+          button.close aria-label="Close" data-dismiss="alert" type="button" 
+            span aria-hidden="true" &times;
 
       = yield
 

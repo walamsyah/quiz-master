@@ -2,9 +2,14 @@ require 'rails_helper'
 
 RSpec.describe Dashboard::QuestionsController, type: :controller do
 
+  let!(:admin) { create :user, role: 'admin' }
   let!(:category) { create :category }
   let!(:question) { create :question, category: category }
-
+  
+  before do
+    sign_in admin
+  end
+  
   describe "GET #index" do
     let!(:category2) { create :category }
     let!(:question2) { create :question, category: category2 }

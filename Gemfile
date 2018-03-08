@@ -20,6 +20,7 @@ gem 'ckeditor'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'kaminari'
+gem 'devise'
 
 group :development, :test do
   gem 'capybara', '~> 2.13'

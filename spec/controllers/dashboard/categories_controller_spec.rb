@@ -1,8 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe Dashboard::CategoriesController, type: :controller do
-
+  let!(:admin) { create :user, role: 'admin' }
   let!(:category) { create :category }
+
+  before do
+    sign_in admin
+  end
 
   describe "GET #index" do
     it "returns http success" do

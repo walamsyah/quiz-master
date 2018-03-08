@@ -1,10 +1,12 @@
 require "rails_helper"
 
 RSpec.feature "Manage Dashboard Questions", :type => :feature do
+  let!(:admin) { create :user, role: 'admin' }
   let!(:category) { create :category }
   let!(:question) { create :question, category: category }
 
   before do
+    login_as admin
     visit dashboard_path
     click_link "Questions"
   end

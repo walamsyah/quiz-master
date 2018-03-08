@@ -1,7 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe DashboardController, type: :controller do
+  let!(:admin) { create :user, role: 'admin' }
 
+  before do
+    sign_in admin
+  end
+  
   describe "GET #index" do
     it "returns http success" do
       get :index
@@ -9,5 +14,4 @@ RSpec.describe DashboardController, type: :controller do
       expect(response).to render_template :index
     end
   end
-
 end

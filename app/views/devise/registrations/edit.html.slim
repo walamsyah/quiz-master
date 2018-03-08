@@ -1,0 +1,52 @@
+.quiz-show__container
+  h1.text-center
+    | Edit #{resource_name.to_s.humanize}
+
+  p
+    | &nbsp;
+
+  = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+    = devise_error_messages!
+    .form-group
+      = f.label :name
+      = f.text_field :name, required: true, autofocus: true, class: "form-control"
+
+    .form-group
+      = f.label :email
+      = f.email_field :email, required: true, class: "form-control"
+
+    .form-group
+      = f.label :current_password
+      = f.password_field :current_password, autocomplete: "off", required: true, class: "form-control"
+
+    div.rounded style="padding: 15px; background: #ececec; margin-bottom: 15px;"
+      small
+        i = " (leave blank if you don't want to change it)"
+      .form-group
+        = f.label :password
+        = f.password_field :password, autocomplete: "off", class: "form-control"
+
+      .form-group
+        = f.label :password_confirmation
+        = f.password_field :password_confirmation, autocomplete: "off", class: "form-control"
+
+    p
+    p
+      button.btn.btn-lg.btn-primary.btn-block type="submit" Update
+  p
+    | &nbsp;
+  hr
+  p
+    | &nbsp;
+
+  h2.text-center Cancel My Account
+  p.text-center
+    | Unhappy?
+
+  = button_to "Cancel My Account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-large btn-danger btn-block"
+
+  p
+    | &nbsp;
+  p.text-center
+    = link_to "Back", :back
+

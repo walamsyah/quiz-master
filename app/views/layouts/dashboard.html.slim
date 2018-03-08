@@ -12,6 +12,9 @@ html
   body
     nav.navbar.navbar-dark.sticky-top.bg-dark.flex-md-nowrap.p-0
       a.navbar-brand.col-sm-3.col-md-2.mr-0 href="/dashboard" Quiz Master Dashboard
+      ul.navbar-nav.px-3
+        li.nav-item.text-nowrap
+          = link_to "Sign Out", destroy_user_session_path, method: :delete, class: "nav-link"
     .container-fluid
       .row
         nav.col-md-2.d-none.d-md-block.bg-light.sidebar

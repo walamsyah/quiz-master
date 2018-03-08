@@ -1,6 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe QuestionsController, type: :controller do
+  
+  let!(:user) { create :user }
+
+  before do
+    sign_in user
+  end
 
   describe "POST #start" do
     context "quiz category is unpublished" do

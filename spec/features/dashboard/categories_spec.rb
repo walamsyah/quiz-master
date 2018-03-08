@@ -1,9 +1,11 @@
 require "rails_helper"
 
 RSpec.feature "Manage Dashboard Categories", :type => :feature do
+  let!(:admin) { create :user, role: 'admin' }
   let!(:category) { create :category }
 
   before do
+    login_as admin
     visit dashboard_path
     click_link "Categories"
   end

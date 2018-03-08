@@ -2,6 +2,7 @@ class Category < ApplicationRecord
   validates :name, :image, presence: true
 
   has_many :questions
+  has_many :question_answers
 
   scope :published, -> { where(published: true) }
   scope :by_name, -> { order(name: :asc) }

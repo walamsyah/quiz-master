@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180305231530) do
+ActiveRecord::Schema.define(version: 20180307070418) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20180305231530) do
     t.boolean "published", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["id"], name: "index_categories_published", where: "published"
   end
 
   create_table "ckeditor_assets", force: :cascade do |t|
@@ -36,8 +37,18 @@ ActiveRecord::Schema.define(version: 20180305231530) do
     t.index ["type"], name: "index_ckeditor_assets_on_type"
   end
 
-  create_table "questions", force: :cascade do |t|
+  create_table "question_answers", force: :cascade do |t|
     t.integer "category_id"
+    t.integer "question_id"
+    t.string "answer"
+    t.string "category_token"
+    t.boolean "is_correct"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "questions", force: :cascade do |t|
+    t.integer "category_id", null: false
     t.text "content"
     t.string "answer"
     t.string "image"
@@ -45,6 +56,7 @@ ActiveRecord::Schema.define(version: 20180305231530) do
     t.integer "position", default: 1
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["category_id", "position"], name: "index_questions_published_position_by_category", where: "published"
   end
 
 end

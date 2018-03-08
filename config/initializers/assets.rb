@@ -16,4 +16,5 @@ Rails.application.config.assets.precompile += %w(
   ckeditor/* 
   dashboard.js 
   dashboard.css 
+  question_ajax_response.js
 )

@@ -2,6 +2,7 @@ require "rails_helper"
 
 RSpec.feature "Play with quiz", :type => :feature do
   let!(:category) { create :category }
+  let!(:question) { create :question, category: category }
 
   before do
     visit root_path
@@ -12,6 +13,19 @@ RSpec.feature "Play with quiz", :type => :feature do
     expect(current_path).to eq quiz_path(category)
     expect(page).to have_content category.name
     expect(page).to have_content category.description
-    expect(page).to have_content "LET'S PLAY NOW"
+
+    click_button "LET'S PLAY NOW"
+    sleep 5
+
+    fill_in "answer", with: "piyama"
+    expect(page).to have_content question.content
+
+    click_button "Submit"
+    sleep 5
+
+
+    expect(page).to have_content question.content
+    expect(page).to have_content "piyama"
+    expect(page).to have_content "FALSE"
   end
 end

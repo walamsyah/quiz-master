@@ -8,7 +8,11 @@ Rails.application.routes.draw do
 
   get 'dashboard', to: 'dashboard#index'
 
-  resources :quizzes, only: :show
+  resources :quizzes, only: :show do
+    resources :questions, only: :create do
+      post :start, on: :collection
+    end
+  end
 
   root to: 'home#index'
 end

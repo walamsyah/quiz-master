@@ -1,0 +1,15 @@
+- question = @questions.first
+= form_tag(quiz_questions_path(@category), method: :post, authenticity_token: true, remote: true, id: "question-form")
+  input type="hidden" name="category_token" value="#{params[:category_token]}"
+  input type="hidden" name="question_id" value="#{question.id}"
+  input type="hidden" name="page" value="#{@next_page}"
+  p
+    .quiz-show__container.bg-light.rounded
+      == question.content
+      .form-group
+        label for="answer" Your Answer:
+        input#answer.form-control placeholder="type your answer here" type="text" name="answer" required="required"
+      p.text-center
+        button.btn.btn-primary type="submit" Submit
+
+= javascript_include_tag "question_ajax_response"

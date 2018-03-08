@@ -15,6 +15,7 @@ RSpec.describe Category, type: :model do
 
   it "has associations" do
     is_expected.to have_many :questions
+    is_expected.to have_many :question_answers
   end
 
   describe '.published' do

@@ -1,0 +1,20 @@
+- if @results.present?
+  .table-responsive
+    table.table.table-hover
+      thead.thead-dark
+        tr
+          th scope="col" Question
+          th scope="col" Your Answer
+          th scope="col" Result
+      tbody
+        - @results.each do |result|
+          tr
+            td == result.question.content
+            td = result.answer
+            td = result.is_correct.to_s.upcase
+
+p.text-center
+  = link_to 'TRY AGAIN', quiz_path(@category), class: "btn btn-success"
+p
+
+= javascript_include_tag "question_ajax_response"

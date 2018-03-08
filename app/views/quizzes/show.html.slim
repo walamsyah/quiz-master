@@ -1,10 +1,14 @@
 .quiz-show__container
   h1.display-4.text-center = @category.name
 p
-p.text-center
-  = image_tag(@category.image_url(:big), class: "img-fluid")
-p
-.quiz-show__container.bg-light.rounded
-  == @category.description
+#quiz-show__questions-container
   p.text-center
-    button.btn.btn-success type="button" LET'S PLAY NOW
+    = image_tag(@category.image_url(:big), class: "img-fluid")
+  p
+  .quiz-show__container.bg-light.rounded
+    == @category.description
+    = form_tag(start_quiz_questions_path(@category), method: :post, authenticity_token: true, remote: true, id: "question-form", class: "text-center")
+      input type="hidden" name="category_token" value="#{SecureRandom.hex(3)}"
+      button.btn.btn-success type="submit" LET'S PLAY NOW
+
+= javascript_include_tag "question_ajax_response"

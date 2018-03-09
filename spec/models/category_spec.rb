@@ -18,6 +18,21 @@ RSpec.describe Category, type: :model do
     is_expected.to have_many :question_answers
   end
 
+  describe '#popular' do
+    it "will order by most frequent plays of categories" do
+      cat1 = create :category
+      cat2 = create :category
+
+      create_list :category_playing, 2, category: cat2
+      create :category_playing, category: cat1
+
+      categories = Category.popular
+
+      expect(categories.first).to eq cat2
+      expect(categories.last).to eq cat1
+    end
+  end
+
   describe '.published' do
     it 'show published category' do
       cat1 = create :category, published: false

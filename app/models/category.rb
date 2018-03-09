@@ -11,6 +11,16 @@ class Category < ApplicationRecord
 
   mount_uploader :image, CategoryImageUploader
 
+  def self.popular
+     playings_query = CategoryPlaying
+      .select("category_id, COUNT(*) AS count")
+      .group("category_id")
+      .order("count DESC")
+    Category.select("categories.*, playings.count").published
+      .joins("JOIN (#{playings_query.to_sql}) as playings ON categories.id = playings.category_id")
+      .order("playings.count DESC")
+  end
+
   def to_param
     "#{id}-#{name.parameterize}"
   end

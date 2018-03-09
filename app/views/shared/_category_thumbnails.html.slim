@@ -10,4 +10,7 @@
             .btn-group
               = link_to quiz_path(category)
                 button.btn.btn-sm.btn-outline-secondary type="button" Play Now
-            small.text-muted = "#{category.total_questions} questions"
+            .div.text-right
+              small.text-muted = "#{category.total_questions} questions"
+              - if category.try(:count).present?
+                small.text-muted style="display:block;margin-top:-5px" = "#{category.count} play"

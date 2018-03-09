@@ -2,6 +2,10 @@
   h1.display-4.font-italic Welcome to Quiz Master
   p.lead.my-3 You can play a variety of educational and entertaining quizzes just here
 
+- if @populars.present?
+  h3.font-italic.border-bottom Popular Quizzes
+  = render partial: "shared/category_thumbnails", locals: { categories: @populars }
+
 - if @categories.present?
   h3.font-italic.border-bottom Latest Quizzes
   = render partial: "shared/category_thumbnails", locals: { categories: @categories }

@@ -1,0 +1,13 @@
+.row.py-3
+  - categories.each do |category|
+    .col-md-4
+      .card.mb-4.box-shadow
+        = link_to quiz_path(category)
+          = image_tag(category.image_url(:medium), class: "card-img-top")
+        .card-body
+          p.card-text.quiz-name__list = category.name
+          .d-flex.justify-content-between.align-items-center
+            .btn-group
+              = link_to quiz_path(category)
+                button.btn.btn-sm.btn-outline-secondary type="button" Play Now
+            small.text-muted = "#{category.total_questions} questions"

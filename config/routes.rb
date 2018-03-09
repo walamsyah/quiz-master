@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     resources :users, except: [:show, :new, :create]
   end
 
-  resources :quizzes, only: :show do
+  resources :quizzes, only: [:show, :index] do
     resources :questions, only: :create do
       post :start, on: :collection
     end

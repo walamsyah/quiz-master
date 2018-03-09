@@ -35,6 +35,7 @@ html
       .nav-scroller.py-1.mb-2 style="border-bottom: 1px solid #e5e5e5"
         nav.nav.d-flex
           = link_to "Home", root_path, class: "p-2 text-muted"
+          = link_to "Quizzes", quizzes_path, class: "p-2 text-muted"
 
       - flash.each do |name, msg|
         div class="alert alert-#{ name == 'notice' ? "success" : "danger" } alert-dismissable fade show" role="alert"

@@ -10,28 +10,29 @@
       | Create
 
 - if @questions.present?
-  table.table.table-striped
-    thead.thead-dark
-      tr
-        th scope="col" Category
-        th scope="col" Content
-        th scope="col" Answer
-        th scope="col" Position
-        th scope="col" Published
-        th scope="col"
-        th scope="col"
-    tbody
-      - @questions.each do |question|
+  .table-responsive
+    table.table.table-hover.table-bordered
+      thead.thead-dark
         tr
-          td = question.category.name
-          td = question.content
-          td = question.answer
-          td = question.position
-          td = question.published
-          td
-            = link_to "Edit", edit_dashboard_question_path(question), class: "btn btn-warning btn-sm", role: "button"
-          td
-            = link_to "Delete", dashboard_question_path(question), method: :delete, data: { confirm: 'Are you sure want to delete?' }, class: "btn btn-danger btn-sm", role: "button"
+          th scope="col" Category
+          th scope="col" Question
+          th scope="col" Answer
+          th.text-center scope="col" Position
+          th.text-center scope="col" Published
+          th scope="col"
+          th scope="col"
+      tbody
+        - @questions.each do |question|
+          tr
+            td = question.category.name
+            td = question.content
+            td = question.answer
+            td.text-center = question.position
+            td.text-center = question.published
+            td.text-center
+              = link_to "Edit", edit_dashboard_question_path(question), class: "btn btn-warning btn-sm", role: "button"
+            td.text-center
+              = link_to "Delete", dashboard_question_path(question), method: :delete, data: { confirm: 'Are you sure want to delete?' }, class: "btn btn-danger btn-sm", role: "button"
 
 
 

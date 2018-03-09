@@ -10,7 +10,7 @@ RSpec.describe "dashboard/categories/index.html.slim", type: :view do
     expect(rendered).to have_content "Quiz Categories"
     expect(rendered).to have_selector "a.btn.btn-sm.btn-outline-secondary[href='#{new_dashboard_category_path}']", text: "Create"
 
-    expect(rendered).to have_selector "table.table.table-striped"
+    expect(rendered).to have_selector "table.table.table-hover.table-bordered"
     expect(rendered).to have_selector "th[scope='col']", text: "Name"
     expect(rendered).to have_selector "th[scope='col']", text: "Published"
     expect(rendered).to have_selector 'td', text: category.name
@@ -25,7 +25,7 @@ RSpec.describe "dashboard/categories/index.html.slim", type: :view do
 
     expect(rendered).to have_content "Quiz Categories"
     expect(rendered).to have_selector "a.btn.btn-sm.btn-outline-secondary[href='#{new_dashboard_category_path}']", text: "Create"
-    expect(rendered).not_to have_selector "table.table.table-striped"
+    expect(rendered).not_to have_selector "table.table.table-hover.table-bordered"
     expect(rendered).not_to have_selector "th[scope='col']", text: "Name"
     expect(rendered).not_to have_selector "th[scope='col']", text: "Published"
   end

@@ -5,7 +5,7 @@
     = f.collection_select(:category_id, Category.all.published.by_name, :id, :name, { prompt: "-- Select Category --" }, { class: "form-control", required: true })
 
   .mb-3
-    = f.label :content
+    = f.label :content, "Question"
     = f.cktext_area :content, required: true
 
   .mb-3

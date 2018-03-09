@@ -6,25 +6,22 @@
         | Create
 
 - if @categories.present?
-  table.table.table-striped
-    thead.thead-dark
-      tr
-        th scope="col" Name
-        th scope="col" Image
-        th scope="col" Published
-        th scope="col"
-        th scope="col"
-    tbody
-      - @categories.each do |category|
+  .table-responsive
+    table.table.table-hover.table-bordered
+      thead.thead-dark
         tr
-          td = category.name
-          td = image_tag(category.image_url(:small))
-          td = category.published
-          td
-            = link_to "Edit", edit_dashboard_category_path(category), class: "btn btn-warning btn-sm", role: "button"
-          td
-            = link_to "Delete", dashboard_category_path(category), method: :delete, data: { confirm: 'Are you sure want to delete?' }, class: "btn btn-danger btn-sm", role: "button"
-
-
-
-
+          th scope="col" Name
+          th.text-center scope="col" Image
+          th.text-center scope="col" Published
+          th scope="col"
+          th scope="col"
+      tbody
+        - @categories.each do |category|
+          tr
+            td = category.name
+            td.text-center = image_tag(category.image_url(:small))
+            td.text-center = category.published
+            td.text-center
+              = link_to "Edit", edit_dashboard_category_path(category), class: "btn btn-warning btn-sm", role: "button"
+            td.text-center
+              = link_to "Delete", dashboard_category_path(category), method: :delete, data: { confirm: 'Are you sure want to delete?' }, class: "btn btn-danger btn-sm", role: "button"

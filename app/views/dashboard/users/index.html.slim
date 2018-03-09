@@ -8,25 +8,22 @@
           = link_to role, dashboard_users_path(role: role.downcase), class: "dropdown-item dropdown-item-sm"
 
 - if @users.present?
-  table.table.table-striped
-    thead.thead-dark
-      tr
-        th scope="col" Name
-        th scope="col" Email
-        th scope="col" Role
-        th scope="col"
-        th scope="col"
-    tbody
-      - @users.each do |user|
+  .table-responsive
+    table.table.table-hover.table-bordered
+      thead.thead-dark
         tr
-          td = user.name
-          td = user.email
-          td = user.role
-          td
-            = link_to "Edit", edit_dashboard_user_path(user), class: "btn btn-warning btn-sm edit-user-#{user.id}", role: "button"
-          td
-            = link_to "Delete", dashboard_user_path(user), method: :delete, data: { confirm: 'Are you sure want to delete?' }, class: "btn btn-danger btn-sm delete delete-user-#{user.id}", role: "button"
-
-
-
-
+          th scope="col" Name
+          th scope="col" Email
+          th.text-center scope="col" Role
+          th scope="col"
+          th scope="col"
+      tbody
+        - @users.each do |user|
+          tr
+            td = user.name
+            td = user.email
+            td.text-center = user.role
+            td.text-center
+              = link_to "Edit", edit_dashboard_user_path(user), class: "btn btn-warning btn-sm edit-user-#{user.id}", role: "button"
+            td.text-center
+              = link_to "Delete", dashboard_user_path(user), method: :delete, data: { confirm: 'Are you sure want to delete?' }, class: "btn btn-danger btn-sm delete delete-user-#{user.id}", role: "button"

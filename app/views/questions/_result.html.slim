@@ -1,17 +1,17 @@
 - if @results.present?
   .table-responsive
-    table.table.table-hover
+    table.table.table-hover.table-bordered
       thead.thead-dark
         tr
           th scope="col" Question
           th scope="col" Your Answer
-          th scope="col" Result
+          th.text-center scope="col" Result
       tbody
         - @results.each do |result|
           tr
             td == result.question.content
             td = result.answer
-            td = result.is_correct.to_s.upcase
+            td.text-center = result.is_correct.to_s.upcase
 
 p.text-center
   = link_to 'TRY AGAIN', quiz_path(@category), class: "btn btn-success"

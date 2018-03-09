@@ -4,10 +4,12 @@ class Dashboard::QuestionsController < DashboardController
   def index
     if params[:category_id].present?
       category = Category.find(params[:category_id])
-      @questions = category.questions.by_position
+      questions = category.questions.by_position
     else
-      @questions = Question.order(updated_at: :desc)
+      questions = Question.order(updated_at: :desc)
     end
+
+    @questions = questions.page(params[:page]).per(10)
   end
 
   def new

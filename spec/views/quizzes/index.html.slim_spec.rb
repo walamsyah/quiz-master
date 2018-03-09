@@ -4,6 +4,7 @@ RSpec.describe "quizzes/index.html.slim", type: :view do
   let!(:category) { create :category }
 
   it "will render partial template category_thumbnails" do
+    stub_template 'shared/_pagination' => ''
     assign :categories, [category]
     render
 

@@ -3,3 +3,4 @@ p
 
 - if @categories.present?
   = render partial: "shared/category_thumbnails", locals: { categories: @categories }
+  = render partial: "shared/pagination", locals: { object: @categories }

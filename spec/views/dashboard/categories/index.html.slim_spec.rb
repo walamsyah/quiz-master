@@ -3,6 +3,10 @@ require 'rails_helper'
 RSpec.describe "dashboard/categories/index.html.slim", type: :view do
   let!(:category) { create :category }
 
+  before do
+    stub_template 'shared/_pagination' => ''
+  end
+
   it "render table list when @categories present" do
     assign :categories, [category]
     render

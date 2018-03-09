@@ -3,6 +3,10 @@ require 'rails_helper'
 RSpec.describe "dashboard/users/index.html.slim", type: :view do
   let!(:user) { create :user }
 
+  before do
+    stub_template 'shared/_pagination' => ''
+  end
+
   it "render table list when @users present" do
     assign :users, [user]
     render

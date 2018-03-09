@@ -3,10 +3,11 @@ class Dashboard::UsersController < DashboardController
 
   def index
     if params[:role].present?
-      @users = User.where(role: params[:role])
+      users = User.where(role: params[:role])
     else
-      @users = User.order(updated_at: :desc)
+      users = User.order(updated_at: :desc)
     end
+    @users = users.page(params[:page]).per(10)
   end
 
   def edit

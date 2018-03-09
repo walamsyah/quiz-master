@@ -2,7 +2,7 @@ class Dashboard::CategoriesController < DashboardController
   before_action :get_category, only: [:edit, :update, :destroy]
 
   def index
-    @categories = Category.latest
+    @categories = Category.latest.page(params[:page]).per(10)
   end
 
   def new

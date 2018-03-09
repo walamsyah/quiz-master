@@ -34,6 +34,4 @@
             td.text-center
               = link_to "Delete", dashboard_question_path(question), method: :delete, data: { confirm: 'Are you sure want to delete?' }, class: "btn btn-danger btn-sm", role: "button"
 
-
-
-
+  = render partial: "shared/pagination", locals: { object: @questions }

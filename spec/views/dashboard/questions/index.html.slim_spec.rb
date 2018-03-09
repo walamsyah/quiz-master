@@ -2,6 +2,10 @@ require 'rails_helper'
 
 RSpec.describe "dashboard/questions/index.html.slim", type: :view do
   let!(:question) { create :question }
+  
+  before do
+    stub_template 'shared/_pagination' => ''
+  end
 
   it "render table list when @questions present" do
     assign :questions, [question]

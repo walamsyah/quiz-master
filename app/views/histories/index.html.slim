@@ -22,6 +22,8 @@ p
             td.text-center = history.total_corrects
             td.text-center = history.point * 100
             td.text-center = link_to "Play Again", quiz_path(history.category), class: "btn btn-sm btn-primary"
+
+  = render partial: "shared/pagination", locals: { object: @histories }
 - else
   p
   h3.text-center It looks like you've never played quiz

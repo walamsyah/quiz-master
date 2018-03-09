@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180308104415) do
+ActiveRecord::Schema.define(version: 20180309003549) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,17 @@ ActiveRecord::Schema.define(version: 20180308104415) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["id"], name: "index_categories_published", where: "published"
+  end
+
+  create_table "category_playings", force: :cascade do |t|
+    t.integer "category_id"
+    t.integer "user_id"
+    t.string "category_token"
+    t.integer "total_questions"
+    t.integer "total_corrects"
+    t.decimal "point"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "ckeditor_assets", force: :cascade do |t|

@@ -7,6 +7,8 @@ class User < ApplicationRecord
   before_create :set_default_role
   validates :name, presence: true
 
+  has_many :category_playings
+
   private
 
   def set_default_role

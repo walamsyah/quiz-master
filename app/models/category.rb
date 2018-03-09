@@ -3,6 +3,7 @@ class Category < ApplicationRecord
 
   has_many :questions
   has_many :question_answers
+  has_many :category_playings
 
   scope :published, -> { where(published: true) }
   scope :by_name, -> { order(name: :asc) }

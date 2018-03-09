@@ -62,6 +62,7 @@ RSpec.describe QuestionsController, type: :controller do
           expect(assigns(:questions)).to include question2
           expect(assigns(:next_page)).to eq 3
           expect(assigns(:results)).not_to be_present
+          expect(CategoryPlaying.where(category_token: token)).not_to be_present
         end
       end
 
@@ -76,11 +77,12 @@ RSpec.describe QuestionsController, type: :controller do
           expect(assigns(:questions)).to include question3
           expect(assigns(:next_page)).to eq 4
           expect(assigns(:results)).not_to be_present
+          expect(CategoryPlaying.where(category_token: token)).not_to be_present
         end
       end
 
       context "params page=4" do
-        it "returns http success and render _result template" do
+        it "returns http success with render _result template and create category_playing" do
           get :create, params: { quiz_id: category, page: 4, category_token: token, question_id: question3.id, answer: "true" }
 
           expect(response).to have_http_status(:success)
@@ -90,6 +92,7 @@ RSpec.describe QuestionsController, type: :controller do
           expect(assigns(:questions)).to eq []
           expect(assigns(:next_page)).not_to be_present
           expect(assigns(:results)).to be_present
+          expect(CategoryPlaying.where(category_token: token)).to be_present
         end
       end
     end

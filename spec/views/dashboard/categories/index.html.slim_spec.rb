@@ -11,7 +11,7 @@ RSpec.describe "dashboard/categories/index.html.slim", type: :view do
     assign :categories, [category]
     render
 
-    expect(rendered).to have_content "Quiz Categories"
+    expect(rendered).to have_content "Quizzes"
     expect(rendered).to have_selector "a.btn.btn-sm.btn-outline-secondary[href='#{new_dashboard_category_path}']", text: "Create"
 
     expect(rendered).to have_selector "table.table.table-hover.table-bordered"
@@ -27,7 +27,7 @@ RSpec.describe "dashboard/categories/index.html.slim", type: :view do
     assign :categories, []
     render
 
-    expect(rendered).to have_content "Quiz Categories"
+    expect(rendered).to have_content "Quizzes"
     expect(rendered).to have_selector "a.btn.btn-sm.btn-outline-secondary[href='#{new_dashboard_category_path}']", text: "Create"
     expect(rendered).not_to have_selector "table.table.table-hover.table-bordered"
     expect(rendered).not_to have_selector "th[scope='col']", text: "Name"

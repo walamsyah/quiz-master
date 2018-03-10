@@ -13,7 +13,7 @@ class Dashboard::CategoriesController < DashboardController
     @category = Category.new(category_params)
 
     if @category.save
-      redirect_to dashboard_categories_path, notice: 'Quiz category was successfully created.'
+      redirect_to dashboard_categories_path, notice: 'Quiz was successfully created.'
     else
       render :new
     end
@@ -24,7 +24,7 @@ class Dashboard::CategoriesController < DashboardController
 
   def update
     if @category.update(category_params)
-      redirect_to dashboard_categories_path, notice: 'Quiz category was successfully updated.'
+      redirect_to dashboard_categories_path, notice: 'Quiz was successfully updated.'
     else
       render :edit
     end
@@ -32,7 +32,7 @@ class Dashboard::CategoriesController < DashboardController
 
   def destroy
     @category.destroy
-    redirect_to dashboard_categories_path, notice: 'Quiz category was successfully deleted.'
+    redirect_to dashboard_categories_path, notice: 'Quiz was successfully deleted.'
   end
 
   private

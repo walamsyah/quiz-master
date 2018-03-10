@@ -33,7 +33,7 @@ RSpec.describe Dashboard::CategoriesController, type: :controller do
 
       expect(assigns(:category)).to be_persisted
       expect(response).to have_http_status(:redirect)
-      expect(flash[:notice]).to match /quiz category was successfully created/i
+      expect(flash[:notice]).to match /quiz was successfully created/i
     end
 
     it "failed to create a question when params not valid" do
@@ -56,7 +56,7 @@ RSpec.describe Dashboard::CategoriesController, type: :controller do
     it "redirect to index when success" do
       patch :update, params: { id: category.id, category: { name: "new name", published: true } }
 
-      expect(flash[:notice]).to match /quiz category was successfully updated/i
+      expect(flash[:notice]).to match /quiz was successfully updated/i
       expect(response).to redirect_to dashboard_categories_path
     end
 
@@ -71,7 +71,7 @@ RSpec.describe Dashboard::CategoriesController, type: :controller do
     it "redirect to index with falsh notice" do
       delete :destroy, params: { id: category.id }
 
-      expect(flash[:notice]).to match /quiz category was successfully deleted/i
+      expect(flash[:notice]).to match /quiz was successfully deleted/i
       expect(response).to redirect_to dashboard_categories_path
     end
   end

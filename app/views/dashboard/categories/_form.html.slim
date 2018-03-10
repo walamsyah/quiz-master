@@ -22,4 +22,4 @@
   hr.mb-4
 
   .mb-3
-    = f.submit class: "btn btn-primary"
+    = f.submit ( f.object.new_record? ? "Create Quiz" : "Update Quiz" ), class: "btn btn-primary"

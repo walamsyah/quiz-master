@@ -2,7 +2,7 @@
   h1.h2 Quiz Questions
   .btn-toolbar.mb-2.mb-md-0
     .mr-2
-      button.btn.btn-sm.btn-outline-secondary.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" type="button" Category
+      button.btn.btn-sm.btn-outline-secondary.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" type="button" Quizzes
       .dropdown-menu.dropdown-menu-sm
         - Category.by_name.each do |category|
           = link_to category.name, dashboard_questions_path(category_id: category.id), class: "dropdown-item dropdown-item-sm"
@@ -14,7 +14,7 @@
     table.table.table-hover.table-bordered
       thead.thead-dark
         tr
-          th scope="col" Category
+          th scope="col" Quiz
           th scope="col" Question
           th.text-center scope="col" Answer
           th.text-center scope="col" Position

@@ -1,7 +1,7 @@
 = render partial: "shared/form_errors", locals: { data: question }
 = form_for [:dashboard, question] do |f|
   .mb-3
-    = f.label :category
+    = f.label :category_id, "Quiz"
     = f.collection_select(:category_id, Category.all.published.by_name, :id, :name, { prompt: "-- Select Category --" }, { class: "form-control", required: true })
 
   .mb-3

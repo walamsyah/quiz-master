@@ -11,8 +11,8 @@ RSpec.feature "Root Path", :type => :feature do
 
       expect(page).to have_content "Popular Quizzes"
       expect(page).to have_content category.name
-      expect(page).to have_content "#{category.total_questions} questions"
-      expect(page).to have_content "1 plays"
+      expect(page).to have_content "#{category.total_questions} question"
+      expect(page).to have_content "1 play"
     end
   end
 
@@ -22,7 +22,7 @@ RSpec.feature "Root Path", :type => :feature do
 
       expect(page).to have_content "Latest Quizzes"
       expect(page).to have_content category.name
-      expect(page).to have_content "#{category.total_questions} questions"
+      expect(page).to have_content "#{category.total_questions} question"
     end
   end
 end

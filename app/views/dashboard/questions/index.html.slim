@@ -16,7 +16,7 @@
         tr
           th scope="col" Category
           th scope="col" Question
-          th scope="col" Answer
+          th.text-center scope="col" Answer
           th.text-center scope="col" Position
           th.text-center scope="col" Published
           th scope="col"
@@ -25,8 +25,8 @@
         - @questions.each do |question|
           tr
             td = question.category.name
-            td = question.content
-            td = question.answer
+            td == question.content
+            td.text-center = question.answer
             td.text-center = question.position
             td.text-center = question.published
             td.text-center

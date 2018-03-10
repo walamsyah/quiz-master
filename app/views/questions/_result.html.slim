@@ -4,13 +4,13 @@
       thead.thead-dark
         tr
           th scope="col" Question
-          th scope="col" Your Answer
+          th.text-center scope="col" Your Answer
           th.text-center scope="col" Result
       tbody
         - @results.each do |result|
           tr
             td == result.question.content
-            td = result.answer
+            td.text-center = result.answer
             td.text-center = result.is_correct.to_s.upcase
 
 p.text-center

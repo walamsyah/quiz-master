@@ -11,7 +11,7 @@ Category.create!([
   },
   {
     name: "Joko Widodo The President of Indonesia", 
-    description: "<p>We have some interesting questions about his history Joko Widodo. Dare to try it?</p>\r\n", 
+    description: "<p>He is known by the name Jokowi. We have some interesting questions about his history. Dare to try it?</p>\r\n", 
     image: Rails.root.join("public/images/jokowi.jpg").open,
     published: true
   },

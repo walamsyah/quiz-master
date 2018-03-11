@@ -33,10 +33,19 @@ html
               = link_to "Sign In", new_user_session_path, class: "btn btn-sm btn-outline-secondary"
 
       .nav-scroller.py-1.mb-2 style="border-bottom: 1px solid #e5e5e5"
-        nav.nav.d-flex
-          = link_to "Home", root_path, class: "p-2 text-muted"
-          = link_to "Quizzes", quizzes_path, class: "p-2 text-muted"
-          = link_to "Popular", popular_path, class: "p-2 text-muted"
+        .row
+          .col-9
+            nav.nav.d-flex
+              = link_to "Home", root_path, class: "p-2 text-muted"
+              = link_to "Quizzes", quizzes_path, class: "p-2 text-muted"
+              = link_to "Popular", popular_path, class: "p-2 text-muted"
+          .col-3
+            = form_tag search_path, method: :get, id: "search-form", class: "form-inline", style: "margin-top:-2px"
+              .input-group
+                = text_field_tag :q, params[:q], placeholder: "Search...", class: 'form-control search-text', required: true, pattern: ".{3,70}", title: "Please enter minimum 3 characters and maximum 70 characters"
+                .input-group-append
+                  button.btn.btn-outline-secondary.search-button style="" type="submit"
+                    i.icon__search
 
       - flash.each do |name, msg|
         div class="alert alert-#{ name == 'notice' ? "success" : "danger" } alert-dismissable fade show" role="alert"

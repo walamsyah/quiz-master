@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180309003549) do
+ActiveRecord::Schema.define(version: 20180310081038) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,7 +22,9 @@ ActiveRecord::Schema.define(version: 20180309003549) do
     t.boolean "published", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.tsvector "search_text"
     t.index ["id"], name: "index_categories_published", where: "published"
+    t.index ["search_text"], name: "index_categories_on_search_text", using: :gin
   end
 
   create_table "category_playings", force: :cascade do |t|
@@ -88,6 +90,17 @@ ActiveRecord::Schema.define(version: 20180309003549) do
     t.integer "role"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_trigger("categories_before_insert_update_row_tr", :generated => true, :compatibility => 1).
+      on("categories").
+      before(:insert, :update) do
+    <<-SQL_ACTIONS
+      new.search_text :=       (
+        setweight(to_tsvector('simple', replace(coalesce(new.name, ''), '''', '-')), 'A') ||
+        setweight(to_tsvector('simple', replace(coalesce(new.description, ''), '''', '-')), 'B')
+      );
+    SQL_ACTIONS
   end
 
 end

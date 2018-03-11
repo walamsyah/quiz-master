@@ -47,7 +47,7 @@ h1, h2, h3, h4, h5, h6 {
   position: relative;
   z-index: 2;
   height: 2.75rem;
-  overflow-y: hidden;
+  // overflow-y: hidden;
 }
 
 .nav-scroller .nav {
@@ -226,4 +226,26 @@ ul.pagination {
 #error_explanation ul li {
   font-size: 12px;
   list-style: square;
+}
+
+.search-button {
+  border-color:#ced4da;
+}
+
+[class^="icon__"], [class*=" icon__"] {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  vertical-align: middle;
+  background-size: 100%;
+}
+
+$icons: (
+  'icon__search', 'icon__remove-circle', 'icon__option-vertical', 'icon__bar'
+);
+
+@each $icon in $icons {
+  .#{$icon} {
+    background-image: image-url("icons/#{$icon}.svg");
+  }
 }

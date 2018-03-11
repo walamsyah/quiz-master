@@ -1,4 +1,6 @@
 class Category < ApplicationRecord
+  include PgSearch
+
   validates :name, :image, presence: true
 
   has_many :questions
@@ -10,6 +12,36 @@ class Category < ApplicationRecord
   scope :latest, -> { order(id: :desc) }
 
   mount_uploader :image, CategoryImageUploader
+
+  pg_search_scope :search, {
+    against: %i(name description),
+    using: {
+      tsearch: {
+        prefix: true,
+        exact_number: true,
+        strip_leading_zero: true,
+        tsvector_column: 'search_text',
+        any_word: false
+      }
+    },
+    order_within_rank: "categories.id DESC"
+  }
+
+  def self.search_text_query(trigger: false)
+    trigger_prefix = trigger ? "new." : ""
+    <<-SQL
+      (
+        setweight(to_tsvector('simple', replace(coalesce(#{trigger_prefix}name, ''), '''', '-')), 'A') ||
+        setweight(to_tsvector('simple', replace(coalesce(#{trigger_prefix}description, ''), '''', '-')), 'B')
+      )
+    SQL
+  end
+
+  trigger.before(:insert, :update) do
+    <<-SQL
+      new.search_text := #{Category.search_text_query(trigger: true)}
+    SQL
+  end
 
   def self.popular
      playings_query = CategoryPlaying

@@ -1,0 +1,15 @@
+h1 Search
+p
+
+- if @categories.present?
+  p 
+    = "Found #{pluralize(@categories.total_count, "result")} for "
+    span.font-weight-bold = @query
+
+  = render partial: "shared/category_thumbnails", locals: { categories: @categories }
+  = render partial: "shared/pagination", locals: { object: @categories }
+- else
+  p
+    | We could not find what you were looking for. Maybe you are interested to try the quizzes below.
+  p
+  = render partial: "shared/category_thumbnails", locals: { categories: @populars }

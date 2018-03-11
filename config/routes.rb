@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   get 'dashboard', to: 'dashboard#index'
   get 'histories', to: 'histories#index'
   get 'popular', to: 'popular#index'
+  get 'search', to: 'search#index'
 
   devise_for :users, controllers: { sessions: 'users/sessions' }
 

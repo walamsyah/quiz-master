@@ -88,4 +88,89 @@ RSpec.describe Category, type: :model do
       expect(category.total_questions).to eq 1
     end
   end
+
+  describe '.search' do
+    context 'content' do
+      let!(:category1) { create :category, name: "my video numero uno ojo's" }
+      let!(:category2) { create :category, name: ' merah ##bagus @@sekali koyo"s' }
+
+      it 'with keywords' do
+        expect(Category.search('numero')).to be_present
+        expect(Category.search('putih')).not_to be_present
+        expect(Category.search('num')).to be_present
+        expect(Category.search('')).not_to be_present
+        expect(Category.search(' merah ##bag @@ ')).to be_present
+        expect(Category.search("ojo")).to be_present
+        expect(Category.search('koyo"s')).to be_present
+      end
+    end
+
+    context 'ordering' do
+      context 'varying priority' do
+        let(:name) { "Starts to Love (by Hakmal Insyan)" }
+        let(:description) { "Band: Melodrama\r\nAuthor: Hakmal Insyan" }
+
+        let!(:category_with_desc)  { create :category, description: "#{name}\r\n #{description}" }
+        let!(:category_with_name) { create :category, name: name }
+
+        before do
+          category_with_name.reload
+          category_with_desc.reload
+        end
+
+        context 'by search result on name first then by search results on description' do
+          it "will have results" do
+            categories = Category.search(name)
+            expect(categories).to include category_with_name
+            expect(categories).to include category_with_desc
+          end
+        end
+
+        context 'by search result on description if search result on name not found' do
+          it "have results" do
+            results = Category.search(description)
+
+            expect(results.first).to eq category_with_desc
+            expect(results.second).to be_nil
+          end
+        end
+      end
+
+      context 'when the search results are of equal priority' do
+        context 'it breaks ties by using the publish_date column' do
+          let!(:earlier_category) { create :category, name: "Mamamia", created_at: DateTime.yesterday }
+          let!(:later_category)   { create :category, name: "Mamamia", created_at: DateTime.now }
+
+          it "have result" do
+            results = Category.search("mamamia")
+            
+            expect(results.first).to eq later_category
+            expect(results.second).to eq earlier_category
+          end
+        end
+      end
+    end
+
+    context "when search contains keywords less than 3 char" do
+      let!(:category_1) { create :category, name: "do remi" }
+      let!(:category_2) { create :category, name: "faso lasi" }
+      let!(:category_3) { create :category, name: "remi fa" }
+      let!(:category_4) { create :category, name: "do misol" }
+
+      it "remove all keywords less than three and return relevant category" do
+        categories = Category.search("do remi")
+
+        expect(categories.size).to eq 2
+        expect(categories).to     include category_1
+        expect(categories).to     include category_3
+        expect(categories).not_to include category_2
+        expect(categories).not_to include category_4
+      end
+
+      it "return empty when all keywords less than 3 chars" do
+        categories = Category.search("do fa")
+        expect(categories).to be_empty
+      end
+    end
+  end
 end

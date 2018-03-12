@@ -10,15 +10,15 @@ Category.create!([
     published: true
   },
   {
-    name: "Joko Widodo The President of Indonesia", 
-    description: "<p>He is known by the name Jokowi. We have some interesting questions about his history. Dare to try it?</p>\r\n", 
-    image: Rails.root.join("public/images/jokowi.jpg").open,
-    published: true
-  },
-  {
     name: "Michael Jackson The King of Pop", 
     description: "<p>Who does not know Michael Jackson as a pop singer legend? We think everyone knows him. Here we will test you how much you know him.</p>\r\n", 
     image: Rails.root.join("public/images/jackson.jpg").open,
+    published: true
+  },
+  {
+    name: "Joko Widodo The President of Indonesia", 
+    description: "<p>He is known by the name Jokowi. We have some interesting questions about his history. Dare to try it?</p>\r\n", 
+    image: Rails.root.join("public/images/jokowi.jpg").open,
     published: true
   },
   {

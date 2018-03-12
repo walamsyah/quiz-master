@@ -20,7 +20,7 @@
           tr
             td = category.name
             td.text-center = image_tag(category.image_url(:small))
-            td.text-center = category.published
+            td.text-center == true_or_false_icon(category.published)
             td.text-center
               = link_to "Edit", edit_dashboard_category_path(category), class: "btn btn-warning btn-sm", role: "button"
             td.text-center

@@ -18,7 +18,7 @@ RSpec.describe "dashboard/categories/index.html.slim", type: :view do
     expect(rendered).to have_selector "th[scope='col']", text: "Name"
     expect(rendered).to have_selector "th[scope='col']", text: "Published"
     expect(rendered).to have_selector 'td', text: category.name
-    expect(rendered).to have_selector 'td', text: category.published
+    expect(rendered).to have_css "td i.icon__true"
     expect(rendered).to have_selector "td a.btn.btn-warning.btn-sm[href='#{edit_dashboard_category_path(category)}']", text: "Edit"
     expect(rendered).to have_selector "td a.btn.btn-danger.btn-sm[href='#{dashboard_category_path(category)}']", text: "Delete"
   end

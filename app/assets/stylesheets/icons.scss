@@ -1,0 +1,17 @@
+[class^="icon__"], [class*=" icon__"] {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  vertical-align: middle;
+  background-size: 100%;
+}
+
+$icons: (
+  'icon__search', 'icon__twitter', 'icon__facebook', 'icon__true', 'icon__false'
+);
+
+@each $icon in $icons {
+  .#{$icon} {
+    background-image: image-url("icons/#{$icon}.svg");
+  }
+}

@@ -34,7 +34,7 @@ RSpec.feature "Manage Dashboard Questions", :type => :feature do
       expect(page).to have_content('Quiz question was successfully created.')
       expect(page).to have_css "td", text: "How old are you?"
       expect(page).to have_css "td", text: "18"
-      expect(page).to have_css "td", text: "true"
+      expect(page).to have_css "td i.icon__true"
     end
 
     it "can edit question" do
@@ -50,7 +50,7 @@ RSpec.feature "Manage Dashboard Questions", :type => :feature do
       expect(page).to have_content('Quiz question was successfully updated.')
       expect(page).to have_css "td", text: "Can we disturb on library?"
       expect(page).to have_css "td", text: "No"
-      expect(page).to have_css "td", text: "true"
+      expect(page).to have_css "td i.icon__true"
     end
 
     it "can delete question" do

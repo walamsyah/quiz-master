@@ -30,7 +30,7 @@ RSpec.feature "Manage Dashboard Quizzes", :type => :feature do
       expect(current_path).to eq dashboard_categories_path
       expect(page).to have_content('Quiz was successfully created.')
       expect(page).to have_css "td", text: "All About Jakarta"
-      expect(page).to have_css "td", text: "true"
+      expect(page).to have_css "td i.icon__true"
     end
 
     it "can edit quiz" do
@@ -45,7 +45,7 @@ RSpec.feature "Manage Dashboard Quizzes", :type => :feature do
       expect(current_path).to eq dashboard_categories_path
       expect(page).to have_content('Quiz was successfully updated.')
       expect(page).to have_css "td", text: "All About Jakarta"
-      expect(page).to have_css "td", text: "true"    
+      expect(page).to have_css "td i.icon__true"
     end
 
     it "can delete quiz" do

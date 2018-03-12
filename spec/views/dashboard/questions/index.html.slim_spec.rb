@@ -25,7 +25,7 @@ RSpec.describe "dashboard/questions/index.html.slim", type: :view do
     expect(rendered).to have_selector 'td', text: question.content
     expect(rendered).to have_selector 'td', text: question.answer
     expect(rendered).to have_selector 'td', text: question.position
-    expect(rendered).to have_selector 'td', text: question.published
+    expect(rendered).to have_selector 'td i.icon__true'
     expect(rendered).to have_selector "td a.btn.btn-warning.btn-sm[href='#{edit_dashboard_question_path(question)}']", text: "Edit"
     expect(rendered).to have_selector "td a.btn.btn-danger.btn-sm[href='#{dashboard_question_path(question)}']", text: "Delete"
   end

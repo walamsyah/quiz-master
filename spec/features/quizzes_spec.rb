@@ -28,7 +28,7 @@ RSpec.feature "Play with quiz", :type => :feature do
 
       expect(page).to have_content question.content
       expect(page).to have_content "piyama"
-      expect(page).to have_content "FALSE"
+      expect(page).to have_css "td i.icon__false"
     end
   end
 

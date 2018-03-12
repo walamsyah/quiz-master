@@ -1,6 +1,26 @@
-.jumbotron.p-3.p-md-5.text-white.rounded.bg-dark
-  h1.display-4.font-italic Welcome to Quiz Master
-  p.lead.my-3 You can play a variety of educational and entertaining quizzes just here
+#carouselQuiz.carousel.slide data-ride="carousel" 
+  ol.carousel-indicators
+    li.active data-slide-to="0" data-target="#carouselQuiz"
+    li data-slide-to="1" data-target="#carouselQuiz" 
+    li data-slide-to="2" data-target="#carouselQuiz" 
+  .carousel-inner
+    .carousel-item.active
+      .jumbotron.p-3.p-md-5.text-white.rounded.bg-info
+        h1.display-4.font-italic Welcome to Quiz Master
+        p.lead.my-3 You can play a variety of educational and entertaining quizzes just here
+    .carousel-item
+      .jumbotron.p-3.p-md-5.text-white.rounded.bg-success
+        h1.display-4.font-italic Rich of Features
+        p.lead.my-3 You can search quizzes, see your played quiz history and more
+    .carousel-item
+      .jumbotron.p-3.p-md-5.text-white.rounded.bg-danger
+        h1.display-4.font-italic Easy Manage
+        p.lead.my-3 Manage quizzes from admin dashboard make it simple
+
+javascript:
+  $('.carousel').carousel({
+    interval: 5000
+  })
 
 - if @populars.present?
   h3.font-italic.border-bottom Popular Quizzes

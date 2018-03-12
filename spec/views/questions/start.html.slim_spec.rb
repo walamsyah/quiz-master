@@ -8,7 +8,7 @@ RSpec.describe "questions/start.html.slim", type: :view do
     allow(view).to receive(:params).and_return({ category_token: '123456' })
 
     assign :category, category
-    assign :questions, [question]
+    assign :questions, Kaminari.paginate_array([question]).page(1)
     assign :next_page, '2'
 
     render
@@ -20,5 +20,6 @@ RSpec.describe "questions/start.html.slim", type: :view do
     expect(rendered).to have_content question.content
     expect(rendered).to have_selector "input#answer.form-control[placeholder='type your answer here'][type='text'][name='answer'][required='required']"
     expect(rendered).to have_selector "button.btn.btn-primary[type='submit']", text: "Submit"
+    expect(rendered).to have_selector "span.badge.badge-pill.badge-info", text: "question 1 of 1"
   end
 end

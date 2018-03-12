@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "quizzes/show.html.slim", type: :view do
   let!(:category) { create :category }
+  let!(:question) { create :question, category: category }
 
   context "user signed in" do
     it "will show quiz detail and play button" do
@@ -14,6 +15,7 @@ RSpec.describe "quizzes/show.html.slim", type: :view do
       expect(rendered).to have_selector "img.img-fluid[src='#{category.image_url(:big)}']"
       expect(rendered).to have_content category.description
       expect(rendered).to have_selector "button.btn.btn-success[type=submit]", text: "LET'S PLAY NOW"
+      expect(rendered).to have_selector "span.badge.badge-pill.badge-info", text: "1 question"
     end
   end
 
@@ -26,6 +28,7 @@ RSpec.describe "quizzes/show.html.slim", type: :view do
       expect(rendered).to have_selector "img.img-fluid[src='#{category.image_url(:big)}']"
       expect(rendered).to have_content category.description
       expect(rendered).to have_selector "a.btn.btn-primary[href='#{new_user_session_path}']", text: "Sign In for Playing"
+      expect(rendered).to have_selector "span.badge.badge-pill.badge-info", text: "1 question"
     end
   end
 end

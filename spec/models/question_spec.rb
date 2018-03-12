@@ -57,5 +57,30 @@ RSpec.describe Question, type: :model do
       question = create :question, answer: "Twenty One"
       expect(question.check_correct_answer?(21)).to eq true
     end
+
+    it "will return true when input='21' and answer='Twenty-One'" do
+      question = create :question, answer: "Twenty-One"
+      expect(question.check_correct_answer?(21)).to eq true
+    end
+
+    it "will return true when input='21.5' and answer='Twenty-One Point Five'" do
+      question = create :question, answer: "Twenty-One Point Five"
+      expect(question.check_correct_answer?(21.5)).to eq true
+    end
+
+    it "will return true when input='21.5' and answer='21.50'" do
+      question = create :question, answer: "21.50"
+      expect(question.check_correct_answer?(21.5)).to eq true
+    end
+
+    it "will return false when input='20' and answer='Twenty-One'" do
+      question = create :question, answer: "Twenty-One"
+      expect(question.check_correct_answer?(20)).to eq false
+    end
+
+    it "will return true when input='110' and answer='One Hundred And Ten'" do
+      question = create :question, answer: "One Hundred And Ten"
+      expect(question.check_correct_answer?(110)).to eq true
+    end
   end
 end

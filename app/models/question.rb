@@ -7,29 +7,28 @@ class Question < ApplicationRecord
   scope :published, -> { where(published: true) }
   scope :by_position, -> { order(position: :asc) }
 
-  def check_correct_answer?(input_answer)
-    return true if answer.to_s.downcase == input_answer.to_s.downcase
-    set_to_number(answer) == set_to_number(input_answer)
+  def check_correct_answer?(input)
+    the_answer = answer.to_s.downcase
+    input      = input.to_s.downcase
+
+    return true if the_answer == input
+
+    set_to_number(the_answer) == set_to_number(input)
   end
 
   private
 
   def set_to_number(string)
-    string = string.to_s.downcase
-    numbers = NumbersInWords.in_numbers(string)
-    
-    if numbers.is_a?(Float) || numbers.is_a?(Integer)
-      number = (numbers.to_i == numbers) ? numbers.to_i : numbers
-      word = NumbersInWords.in_words(number, NumbersInWords.language)
-      normalized = string.gsub(word, number.to_s)
-    elsif numbers.is_a? Array
-      normalized = string
-      numbers.each do |number|
-        word = NumbersInWords.in_words(number, NumbersInWords.language)
-        normalized = normalized.gsub(word, number.to_s)
-      end
+    number = NumbersInWords.in_numbers(string)
+
+    if number.is_a?(Float) || number.is_a?(Integer)
+      result = number
+    else
+      result = string
     end
 
-    normalized
+    return string if result == 0
+
+    result
   end
 end

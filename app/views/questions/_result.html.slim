@@ -1,8 +1,4 @@
 - if @results.present?
   = render partial: "shared/result_list", locals: { results: @results }
 
-p.text-center
-  = link_to 'TRY AGAIN', quiz_path(@category), class: "btn btn-success"
-p
-
 = javascript_include_tag "question_ajax_response"

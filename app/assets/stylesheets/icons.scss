@@ -7,7 +7,7 @@
 }
 
 $icons: (
-  'icon__search', 'icon__twitter', 'icon__facebook', 'icon__true', 'icon__false'
+  'icon__search', 'icon__true', 'icon__false'
 );
 
 @each $icon in $icons {

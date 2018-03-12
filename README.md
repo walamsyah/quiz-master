@@ -11,6 +11,8 @@ This is awesome Rails application for fun playing quizzes.
 
 * Popular quizzes
 
+* Share on Social Media
+
 * User quiz playing history with the results
 
 * User sign in and sign up

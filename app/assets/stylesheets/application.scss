@@ -193,7 +193,7 @@ ul.pagination {
   padding: 15px;
   margin-right: auto;
   margin-left: auto;
-  max-width:40rem;
+  max-width:45rem;
 }
 
 #error_explanation {
@@ -231,4 +231,20 @@ ul.pagination {
 
 .search-button {
   border-color:#ced4da;
+}
+
+.btn-sosmed {
+  color: white !important;
+}
+
+.btn-sosmed:hover {
+  opacity: 0.7;
+}
+
+.btn-fb {
+  background-color: #3B5998;
+}
+
+.btn-tw {
+  background-color: #55ACEE;
 }

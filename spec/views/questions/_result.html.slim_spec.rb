@@ -13,28 +13,19 @@ RSpec.describe "questions/_result.html.slim", type: :view do
       expect(rendered).not_to have_selector "th[scope='col']", text: "Question"
       expect(rendered).not_to have_selector "th[scope='col']", text: "Your Answer"
       expect(rendered).not_to have_selector "th[scope='col']", text: "Result"
-
-      expect(rendered).to have_selector "a.btn.btn-success[href='#{quiz_path(category)}']"
     end
   end
 
   context "@results is present" do
     it "will show results list" do
-      question_answer = create :question_answer
+      question_answer = create :question_answer, category: category
 
       assign :category, category
       assign :results, [question_answer]
 
       render
 
-      expect(rendered).to have_selector "th[scope='col']", text: "Question"
-      expect(rendered).to have_selector "th[scope='col']", text: "Your Answer"
-      expect(rendered).to have_selector "th[scope='col']", text: "Result"
-      expect(rendered).to have_selector "td", text: question_answer.question.content
-      expect(rendered).to have_selector "td", text: question_answer.answer
-      expect(rendered).to have_selector "td", text: question_answer.is_correct
-
-      expect(rendered).to have_selector "a.btn.btn-success[href='#{quiz_path(category)}']"
+      expect(rendered).to render_template partial: "shared/_result_list", locals: { results: [question_answer] }
     end
   end
 end

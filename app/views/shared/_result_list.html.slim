@@ -1,17 +1,29 @@
-.table-responsive
-  table.table.table-hover.table-bordered
-    thead.thead-dark
-      tr
-        th scope="col" Question
-        th.text-center scope="col" Your Answer
-        th.text-center scope="col" Result
-    tbody
-      - results.each do |result|
+.quiz-show__container
+  .table-responsive
+    table.table.table-hover.table-bordered
+      thead.thead-dark
         tr
-          td == result.question.content
-          td.text-center = result.answer
-          td.text-center == true_or_false_icon(result.is_correct)
+          th scope="col" Question
+          th.text-center scope="col" Your Answer
+          th.text-center scope="col" Result
+      tbody
+        - results.each do |result|
+          tr
+            td == result.question.content
+            td.text-center = result.answer
+            td.text-center == true_or_false_icon(result.is_correct)
 
-a.btn.btn-block style="background-color:#4286f4"
-  i.icon__facebook style="color:white"
-  | Share on Facebook
+  = stylesheet_link_tag "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+
+  p.text-center
+    a.btn.btn-sm.btn-sosmed.btn-fb href="https://www.facebook.com/sharer/sharer.php?u=#{result_url(results.first.category_token)}"
+      i.fa.fa-facebook.pr-2
+      | Share on Facebook
+    | &nbsp;
+    | &nbsp;
+    a.btn.btn-sm.btn-sosmed.btn-tw href="https://twitter.com/home?status=#{result_url(results.first.category_token)}"
+      i.fa.fa-twitter.pr-2
+      | Tweet on Twitter
+
+p.text-center
+  = link_to 'PLAY AGAIN', quiz_path(results.first.category), class: "btn btn-success"

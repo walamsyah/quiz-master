@@ -17,7 +17,7 @@ RSpec.describe "search/index.html.slim", type: :view do
     end
   end
 
-  context "have result" do
+  context "not have result" do
     it "will not show result count but render partial template category_thumbnails" do
       stub_template 'shared/_pagination' => ''
       assign :categories, []

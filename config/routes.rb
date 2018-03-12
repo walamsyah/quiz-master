@@ -13,6 +13,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :results, only: :show
+
   get 'dashboard', to: 'dashboard#index'
   get 'histories', to: 'histories#index'
   get 'popular', to: 'popular#index'

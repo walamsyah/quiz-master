@@ -1,0 +1,18 @@
+h1 Quiz Result
+p
+
+- if @results.present?
+  - category = @results.first.category
+
+  .quiz-show__container
+    h1.display-4.text-center = category.name
+  p
+  #quiz-show__questions-container
+    p.text-center
+      = image_tag(category.image_url(:big), class: "img-fluid")
+    p
+
+    = render partial: "shared/result_list", locals: { results: @results }
+- else
+  p
+    | We could not find what you were looking for.

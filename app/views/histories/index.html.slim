@@ -8,9 +8,10 @@ p
         tr
           th.text-center scope="col" Date
           th scope="col" Quiz
-          th.text-center scope="col" Total Question
-          th.text-center scope="col" Total Correct
+          th.text-center scope="col" Question
+          th.text-center scope="col" Correct
           th.text-center scope="col" Point
+          th scope="col"
           th scope="col"
 
       tbody
@@ -21,11 +22,12 @@ p
             td.text-center = history.total_questions
             td.text-center = history.total_corrects
             td.text-center = history.point * 100
-            td.text-center = link_to "Play Again", quiz_path(history.category), class: "btn btn-sm btn-primary"
+            td.text-center = link_to "Result", result_path(history.category_token), class: "btn btn-sm btn-primary"
+            td.text-center = link_to "Play Again", quiz_path(history.category), class: "btn btn-sm btn-success"
 
   = render partial: "shared/pagination", locals: { object: @histories }
 - else
   p
   h3.text-center It looks like you've never played quiz
   p.text-center
-    = link_to "PLAY NOW", "#", class: "btn btn-primary"
+    = link_to "PLAY NOW", quizzes_path, class: "btn btn-primary"

@@ -1,17 +1,5 @@
 - if @results.present?
-  .table-responsive
-    table.table.table-hover.table-bordered
-      thead.thead-dark
-        tr
-          th scope="col" Question
-          th.text-center scope="col" Your Answer
-          th.text-center scope="col" Result
-      tbody
-        - @results.each do |result|
-          tr
-            td == result.question.content
-            td.text-center = result.answer
-            td.text-center = result.is_correct.to_s.upcase
+  = render partial: "shared/result_list", locals: { results: @results }
 
 p.text-center
   = link_to 'TRY AGAIN', quiz_path(@category), class: "btn btn-success"

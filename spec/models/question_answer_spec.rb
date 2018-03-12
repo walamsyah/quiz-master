@@ -17,5 +17,6 @@ RSpec.describe QuestionAnswer, type: :model do
   it "has associations" do
     is_expected.to belong_to :category
     is_expected.to belong_to :question
+    is_expected.to belong_to :user
   end
 end

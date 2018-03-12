@@ -8,6 +8,7 @@ class User < ApplicationRecord
   validates :name, presence: true
 
   has_many :category_playings
+  has_many :question_answers
 
   private
 

@@ -5,5 +5,6 @@ FactoryBot.define do
     is_correct false
     category
     question
+    user
   end
 end

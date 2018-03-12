@@ -3,11 +3,7 @@ require "rails_helper"
 RSpec.feature "Sign Up", :type => :feature do
   it "will doing sign in then sign out process" do
     visit root_path
-    click_link "Sign In"
-
-    expect(current_path).to eq new_user_session_path
-
-    click_link "Sign up"
+    click_link "Sign Up"
 
     expect(current_path).to eq new_user_registration_path
 

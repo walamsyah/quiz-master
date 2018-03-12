@@ -11,7 +11,5 @@ RSpec.describe "devise/registrations/new.html.slim", type: :view do
     expect(rendered).to have_selector "input#user_password[type='password']"
     expect(rendered).to have_selector "input#user_password_confirmation[type='password']"
     expect(rendered).to have_selector "button.btn.btn-lg.btn-primary.btn-block[type='submit']", text: "Sign Up"
-
-    expect(rendered).to render_template "devise/shared/_links"   
   end
 end
